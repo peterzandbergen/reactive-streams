@@ -23,6 +23,8 @@ actor DefaultPublisher[A: Any #share] is ManagedPublisher[A]
 
 
   be subscribe(sub: Subscriber[A]) =>
+    """
+    """
     if _sm.contains(sub) then
       sub.on_error(AlreadySubscribed)
     else
@@ -34,11 +36,11 @@ actor DefaultPublisher[A: Any #share] is ManagedPublisher[A]
     """
     Increment the bound on the subscription.
     """
-    if _sm.contains(sub) then
-      _sm.remove(sub)
-    else
-      sub.on_error(NotSubscribed)
-    end
+    // if _sm.contains(sub) then
+    //   // Increment the counter on the subscriber.
+    // else
+    //   sub.on_error(NotSubscribed)
+    // end
 
   be _cancel(sub: Subscriber[A]) =>
     if _sm.contains(sub) then
