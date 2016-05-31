@@ -12,6 +12,7 @@ class UnicastNotifier[A: Any #share] is PublisherNotify[A]
       sub.on_error(AlreadySubscribed)
       false
     | None => _sub = sub
+      pub.send_data()
       true
     else
       false

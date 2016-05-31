@@ -6,11 +6,11 @@ actor DefaultPublisher[A: Any #share] is ManagedPublisher[A]
   let _pn: PublisherNotify[A]
 
 
-  new create(notify: PublisherNotify[A] iso^) =>
+  new create(notify: PublisherNotify[A] iso) =>
     """
     Accept the nofify object and keep it.
     """
-    _pn = notify
+    _pn = consume notify
 
 
   be subscribe(sub: Subscriber[A] tag) =>
