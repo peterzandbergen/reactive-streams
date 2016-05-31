@@ -2,6 +2,16 @@ interface ManagedPublisher[A: Any #share] is Publisher[A]
   """
   """
 
+  be publish(d: A)
+  """
+  Publish data.
+  """
+
+  be send_data()
+  """
+  Trigger a send, should only be called from the PublisherNotify.
+  """
+
   be _request(s: Subscriber[A] tag, n: U64)
   """
   This behaviour is called by the _Subscription to request more data.
@@ -12,48 +22,36 @@ interface ManagedPublisher[A: Any #share] is Publisher[A]
   This behaviour is called by the _Subscription to cancel the subscription.
   """
 
+
 interface PublisherNotify[A: Any #share]
   """
   Called by the DefaultPublisher to allow code injection.
   """
-  fun on_subscribe(pub: ManagedPublisher[A] ref, sub: Subscriber[A] tag)
 
-  fun on_request(pub: ManagedPublisher[A] ref, sub: Subscriber[A] tag, n: U64)
-
-  fun on_cancel(pub: ManagedPublisher[A] ref, sub: Subscriber[A] tag)
-
-
-
-actor DefaultPublisher[A: Any #share] is ManagedPublisher[A]
+  fun ref on_subscribe(pub: DefaultPublisher[A], sub: Subscriber[A] tag): Bool
   """
-  This actor is modelled as the TcpConnection using Notify classes that
-  run inside the actor and determine the behaviour of the Publisher.
+  Register the new subscriber. Return true if successful.
   """
 
-  let _pn: PublisherNotify[A] box
+  fun ref on_request(pub: DefaultPublisher[A], sub: Subscriber[A] tag, n: U64)
+  """
+  Handle the subscriber's request for more data.
+  """
 
-  new create(notify: PublisherNotify[A] iso^) =>
-    """
-    sm needs to be an iso I can keep, hence the ^
-    """
-    _pn = notify
+  fun ref on_cancel(pub: DefaultPublisher[A], sub: Subscriber[A] tag)
+  """
+  Handle the subscriber's request for cancelation.
+  """
 
+  fun ref on_publish(pub: DefaultPublisher[A], data: A)
+  """
+  Accept the new data and pass it on.
+  """
 
-  be subscribe(sub: Subscriber[A] tag) =>
-    """
-    """
-    _pn.on_subscribe(this, sub)
-
-
-  be _request(sub: Subscriber[A] tag, n: U64) =>
-    """
-    Increment the bound on the subscription.
-    """
-    _pn.on_request(this, sub, n)
-
-
-  be _cancel(sub: Subscriber[A] tag) =>
-    _pn.on_cancel(this, sub)
+  fun ref on_send_data(pub: DefaultPublisher[A])
+  """
+  Called when data can be possibly sent.
+  """
 
 
 class _Subscription[A: Any #share] is Subscription
