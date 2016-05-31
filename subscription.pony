@@ -25,7 +25,6 @@ interface Subscription
     A Publisher can send less than is requested if the stream ends but then
     must emit either Subscriber.on_error or Subscriber.on_complete.
     """
-    // None
 
   fun ref cancel()
     """
@@ -34,9 +33,3 @@ interface Subscription
     Data may still be sent to meet previously signalled demand after calling
     cancel as this request is asynchronous.
     """
-    // None
-
-// class NoSubscription is Subscription
-//   """
-//   All operations are noops.
-//   """
