@@ -52,6 +52,7 @@ actor Yield
 actor Main
   let _env: Env
   let _publisher: DefaultPublisher[String]
+  var _n: U64 = 0
 
   new create(env: Env) =>
     _env = env
@@ -61,8 +62,7 @@ actor Main
     let sub = StringSubscriber(this, env)
     _publisher.subscribe(sub)
 
-    _publisher.publish("Hallo")
-    _env.out.print("called publish")
+    _publish("Hallo")
     let y = Yield(this)
     y.yield()
 
@@ -70,31 +70,23 @@ actor Main
 
 
   be yield() =>
-    _publisher.publish("Hallo")
-    _env.out.print("called publish")
-    _publisher.publish("Hallo")
-    _env.out.print("called publish")
-    _publisher.publish("Hallo")
-    _env.out.print("called publish")
-    _publisher.publish("Hallo")
-    _env.out.print("called publish")
-    _publisher.publish("Hallo")
-    _env.out.print("called publish")
-    _publisher.publish("Daar")
-    _env.out.print("called publish")
-    _publisher.publish("Daar")
-    _env.out.print("called publish")
-    _publisher.publish("Daar")
-    _env.out.print("called publish")
-    _publisher.publish("Daar")
-    _env.out.print("called publish")
-    _publisher.publish("Daar")
-    _env.out.print("called publish")
-    _publisher.publish("Daar")
-    _env.out.print("called publish")
+    _publish("Hallo")
+    _publish("Hallo")
+    _publish("Hallo")
+    _publish("Hallo")
+    _publish("Hallo")
+    _publish("Hallo")
+    _publish("Hallo")
+    _publish("Hallo")
+    _publish("Hallo")
+    _publish("Hallo")
+    _publish("Hallo")
+    _publish("Hallo")
 
 
-    // loop()
+  fun ref _publish(s: String) =>
+    let n = (_n = _n + 1)
+    _publisher.publish(n.string() + ": " + s)
+    _env.out.print("called publish: " + n.string())
 
-  be loop() =>
-    loop()
+

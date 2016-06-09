@@ -21,9 +21,10 @@ actor DefaultPublisher[A: Any #share] is ManagedPublisher[A]
       sub.on_subscribe(recover _Subscription[A](sub, this) end)
     end
 
+/*
   be send_data() =>
     _pn.on_send_data(this)
-
+*/
 
   be publish(d: A) =>
     _pn.on_publish(this, d)

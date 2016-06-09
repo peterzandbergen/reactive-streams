@@ -7,11 +7,12 @@ interface ManagedPublisher[A: Any #share] is Publisher[A]
   Publish data.
   """
 
+/*
   be send_data()
   """
   Trigger a send, should only be called from the PublisherNotify.
   """
-
+*/
   be _request(s: Subscriber[A] tag, n: U64)
   """
   This behaviour is called by the _Subscription to request more data.
@@ -48,10 +49,6 @@ interface PublisherNotify[A: Any #share]
   Accept the new data and pass it on.
   """
 
-  fun ref on_send_data(pub: DefaultPublisher[A])
-  """
-  Called when data can be possibly sent.
-  """
 
 
 class _Subscription[A: Any #share] is Subscription

@@ -12,7 +12,7 @@ class UnicastNotifier[A: Any #share] is PublisherNotify[A]
       sub.on_error(AlreadySubscribed)
       false
     | None => _sub = sub
-      pub.send_data()
+      send_data()
       true
     else
       false
@@ -24,7 +24,7 @@ class UnicastNotifier[A: Any #share] is PublisherNotify[A]
     | let s: Subscriber[A] tag =>
       if _sub is s then
         _requests = _requests + n
-        pub.send_data()
+        send_data()
       end
     end
 
@@ -43,10 +43,10 @@ class UnicastNotifier[A: Any #share] is PublisherNotify[A]
     Collect the data and try to send it.
     """
     _data.push(d)
-    pub.send_data()
+    send_data()
 
 
-  fun ref on_send_data(pub: DefaultPublisher[A]) =>
+  fun ref send_data() =>
     match _sub
     | let s: Subscriber[A] tag =>
       if _sub is s then
