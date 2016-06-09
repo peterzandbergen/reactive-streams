@@ -49,6 +49,11 @@ interface PublisherNotify[A: Any #share]
   Accept the new data and pass it on.
   """
 
+  fun ref on_complete(pub: DefaultPublisher[A])
+  """
+  Send complete to the subscriber.
+  """
+
 
 
 class _Subscription[A: Any #share] is Subscription

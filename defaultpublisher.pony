@@ -30,6 +30,10 @@ actor DefaultPublisher[A: Any #share] is ManagedPublisher[A]
     _pn.on_publish(this, d)
 
 
+  be complete() =>
+    _pn.on_complete(this)
+
+
   be _request(sub: Subscriber[A] tag, n: U64) =>
     """
     Increment the bound on the subscription.

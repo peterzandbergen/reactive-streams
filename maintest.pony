@@ -1,7 +1,11 @@
 use "collections"
 use "logger"
 
+
 class NoSubscription is Subscription
+  """
+  NoSubscription is a noop class, used to make the code easier.
+  """
   fun ref request(n: U64) =>
     None
 
@@ -12,7 +16,7 @@ actor StringSubscriber is Subscriber[String]
   var _sub: (NoSubscription | Subscription) = NoSubscription
   let _env: Env
   var _mod: U64 = 0
-  let _modmod: U64 = 4
+  let _modmod: U64 = 5
   let _main: Main
 
   new create(main: Main, env: Env) =>
@@ -25,8 +29,11 @@ actor StringSubscriber is Subscriber[String]
     _sub.request(_modmod)
 
   be on_next(a: String) =>
-    _env.out.write("on_next: ")
-    _env.out.print(a)
+    """
+    on_next is called by the publisher when new data is available.
+    """
+    _env.out.print("on_next: " + a)
+    // Send a request for new data each _mod times.
     _mod = (_mod + 1) % _modmod
     if _mod == 0 then
       _sub.request(_modmod)
@@ -34,9 +41,14 @@ actor StringSubscriber is Subscriber[String]
     end
 
   be on_error(e: ReactiveError) =>
+    """
+    on_error is called in error. stop the subscription.
+    """
+    _sub = NoSubscription
     _env.out.print("on_error")
 
   be on_complete() =>
+    _sub = NoSubscription
     _env.out.print("on_complete")
 
 actor Yield
@@ -82,6 +94,18 @@ actor Main
     _publish("Hallo")
     _publish("Hallo")
     _publish("Hallo")
+    _publish("Hallo")
+    _publish("Hallo")
+    _publish("Hallo")
+    _publish("Hallo")
+    _publish("Hallo")
+    _publish("Hallo")
+    _publish("Hallo")
+    _publish("Hallo")
+    _publish("Hallo")
+    _publisher.complete()
+    _env.out.print("called complete")
+
 
 
   fun ref _publish(s: String) =>
