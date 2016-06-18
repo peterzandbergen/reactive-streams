@@ -2,17 +2,6 @@ interface ManagedPublisher[A: Any #share] is Publisher[A]
   """
   """
 
-  be publish(d: A)
-  """
-  Publish data.
-  """
-
-/*
-  be send_data()
-  """
-  Trigger a send, should only be called from the PublisherNotify.
-  """
-*/
   be _request(s: Subscriber[A] tag, n: U64)
   """
   This behaviour is called by the _Subscription to request more data.
@@ -55,7 +44,6 @@ interface PublisherNotify[A: Any #share]
   """
 
 
-
 class _Subscription[A: Any #share] is Subscription
   """
   Internal subscription which is type safe and passes the request and cancel to
@@ -70,7 +58,7 @@ class _Subscription[A: Any #share] is Subscription
     _sub = sub
     _pub = pub
 
-  fun ref request(n: U64) =>
+  fun request(n: U64) =>
     if not _canceled then
       _pub._request(_sub, n)
     end

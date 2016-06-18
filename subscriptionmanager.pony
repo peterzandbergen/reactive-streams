@@ -13,7 +13,7 @@ interface SubscriptionManager[A: Any #share]
   fun ref remove(sub: Subscriber[A] tag)
     """
     """
-  fun box contains(sub: Subscriber[A] tag): Bool
+  fun val contains(sub: Subscriber[A] tag): Bool
     """
     """
 
@@ -48,7 +48,7 @@ class SingleSubscriptionManager[A: Any #share] is SubscriptionManager[A]
     """
     _sub = None
 
-  fun box contains(sub: Subscriber[A]): Bool =>
+  fun val contains(sub: Subscriber[A]): Bool =>
     """
     """
     not (_sub is None)
@@ -65,6 +65,7 @@ class SingleSubscriptionManager[A: Any #share] is SubscriptionManager[A]
     Send next to all subscribers.
     """
     _count = _count + 1
+    
 
 class DefaultSubscriptionManager[A: Any #share] is SubscriptionManager[A]
   """
