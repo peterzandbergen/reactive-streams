@@ -28,14 +28,12 @@ interface tag Subscriber[A: Any #share]
     The Publisher will send notifications only in response to
     Subscription.request.
     """
-    // None
 
   be on_next(a: A)
     """
     Data notification sent by the Publisher in response to requests to
     Subscription.request.
     """
-    // None
 
   be on_error(e: ReactiveError)
     """
@@ -44,7 +42,6 @@ interface tag Subscriber[A: Any #share]
     No further events will be sent even if Subscription.request is invoked
     again.
     """
-    // None
 
   be on_complete()
     """
@@ -53,4 +50,3 @@ interface tag Subscriber[A: Any #share]
     No further events will be sent even if Subscription.request is invoked
     again.
     """
-    // None

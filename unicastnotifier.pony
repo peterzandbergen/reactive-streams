@@ -58,6 +58,7 @@ class UnicastNotifier[A: Any #share] is PublisherNotify[A]
       end
     end
 
+
   fun ref send_data() =>
     match _sub
     | let s: Subscriber[A] tag =>

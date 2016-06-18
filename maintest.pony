@@ -12,6 +12,7 @@ class NoSubscription is Subscription
   fun ref cancel() =>
     None
 
+
 actor StringSubscriber is Subscriber[String]
   var _sub: (NoSubscription | Subscription) = NoSubscription
   let _env: Env
@@ -51,6 +52,7 @@ actor StringSubscriber is Subscriber[String]
     _sub = NoSubscription
     _env.out.print("on_complete")
 
+
 actor Yield
   let _main: Main
 
@@ -78,8 +80,6 @@ actor Main
     let y = Yield(this)
     y.yield()
 
-    // yield()
-
 
   be yield() =>
     _publish("Hallo")
@@ -105,7 +105,6 @@ actor Main
     _publish("Hallo")
     _publisher.complete()
     _env.out.print("called complete")
-
 
 
   fun ref _publish(s: String) =>
