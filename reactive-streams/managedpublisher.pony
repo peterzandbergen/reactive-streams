@@ -2,14 +2,32 @@ interface ManagedPublisher[A: Any #share] is Publisher[A]
   """
   """
 
-  be _request(s: Subscriber[A] tag, n: U64)
+  fun get_manager(): SubscriberManager[A]
+
+  be _request(s: Subscriber[A] tag, n: U64) =>
   """
   This behaviour is called by the _Subscription to request more data.
   """
+    get_manager().on_request(s, n)
 
-  be _cancel(s: Subscriber[A] tag)
+  be _cancel(s: Subscriber[A] tag) =>
   """
   This behaviour is called by the _Subscription to cancel the subscription.
+  """
+    get_manager().on_cancel(s)
+
+
+interface SubscriberManager[A: Any #share]
+  """
+  This is the interface that each subscriber manager needs to implement.
+  """
+
+  fun ref on_request(s: Subscriber[A] tag, n: U64)
+  """
+  """
+
+  fun ref on_cancel(s: Subscriber[A] tag)
+  """
   """
 
 
