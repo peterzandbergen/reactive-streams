@@ -59,6 +59,14 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "main.sublime-project",
+			"settings":
+			{
+				"buffer_size": 45,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -92,7 +100,7 @@
 				"Build With: Pony"
 			]
 		],
-		"width": 485.0
+		"width": 449.0
 	},
 	"console":
 	{
@@ -113,11 +121,16 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
+	"expanded_folders":
+	[
+		"/home/peza/Documents/pony play/reactive-me"
+	],
 	"file_history":
 	[
+		"/home/peza/Documents/pony play/reactive-me/main.sublime-project",
+		"/home/peza/.config/sublime-text-3/Packages/GoSublime/USAGE.md",
 		"/home/peza/Documents/pony play/reactive-me/main.pony",
 		"/home/peza/Documents/pony play/inherit/inherit",
-		"/home/peza/.config/sublime-text-3/Packages/GoSublime/USAGE.md",
 		"/home/peza/Documents/pony play/inherit/    /home/peza/Documents/pony play/inherit/main.pony",
 		"/home/peza/Documents/pony play/httpserver/.gitignore",
 		"/home/peza/Documents/pony play/httpserver/main.pony",
@@ -221,8 +234,37 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "main.sublime-project",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 45,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -257,6 +299,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.MarGo-output":
+	{
+		"height": 162.0
+	},
 	"output.find_results":
 	{
 		"height": 100.0
