@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"on",
+				"on_request"
+			],
+			[
+				"Sub",
+				"SubscriberManager"
+			],
+			[
 				"t",
 				"tmgr"
 			],
@@ -40,10 +48,6 @@
 				"_num_ready"
 			],
 			[
-				"on",
-				"on_complete"
-			],
-			[
 				"No",
 				"NoSubscription"
 			],
@@ -60,10 +64,34 @@
 	"buffers":
 	[
 		{
-			"file": "main.sublime-project",
+			"file": "reactive-streams/managedpublisher.pony",
 			"settings":
 			{
-				"buffer_size": 45,
+				"buffer_size": 1284,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "reactive-streams/unicastpublisher.pony",
+			"settings":
+			{
+				"buffer_size": 183,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "main.pony",
+			"settings":
+			{
+				"buffer_size": 2404,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "reactive-streams/testmain.pony",
+			"settings":
+			{
+				"buffer_size": 312,
 				"line_ending": "Unix"
 			}
 		}
@@ -104,7 +132,7 @@
 	},
 	"console":
 	{
-		"height": 139.0,
+		"height": 223.0,
 		"history":
 		[
 			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
@@ -123,10 +151,19 @@
 	},
 	"expanded_folders":
 	[
-		"/home/peza/Documents/pony play/reactive-me"
+		"/home/peza/Documents/pony play/reactive-me",
+		"/home/peza/Documents/pony play/reactive-me/reactive-streams"
 	],
 	"file_history":
 	[
+		"/home/peza/Documents/pony play/reactive-me/reactive-streams/unicastnotifier.pony",
+		"/home/peza/Documents/pony play/reactive-me/reactive-streams/defaultpublisher.pony",
+		"/home/peza/Documents/pony play/reactive-me/reactive-streams/defaultsubscriber.pony",
+		"/home/peza/Documents/pony play/reactive-me/reactive-streams/    /home/peza/Documents/pony play/reactive-me/reactive-streams/defaultpublisher.pony",
+		"/home/peza/Documents/pony play/reactive-me/reactive-streams/subscriptionmanager.pony",
+		"/home/peza/Documents/pony play/reactive-me/reactive-streams/subscriber.pony",
+		"/home/peza/Documents/pony play/reactive-me/reactive-streams/publisher.pony",
+		"/home/peza/Documents/pony play/reactive-me/maintest.pony",
 		"/home/peza/Documents/pony play/reactive-me/main.sublime-project",
 		"/home/peza/.config/sublime-text-3/Packages/GoSublime/USAGE.md",
 		"/home/peza/Documents/pony play/reactive-me/main.pony",
@@ -158,11 +195,9 @@
 		"/home/peza/Documents/pony play/my tries/persistent/main.pony",
 		"/home/peza/Documents/pony play/my tries/manyactors/main.pony",
 		"/home/peza/Desktop/teamviewer-teamviewer11.desktop",
-		"/home/peza/Documents/pony play/reactive-me/reactive-streams/defaultsubscriber.pony",
 		"/home/peza/Documents/pony play/reactive-me/reactive-streams/publishernotify.pony",
 		"/home/peza/Documents/pony play/reactive-me/reactive-streams/subscribernotify.pony",
 		"/home/peza/Documents/pony play/reactive-me/reactive-streams/    /home/peza/Documents/pony play/reactive-me/reactive-streams/defaultsubscriber.pony",
-		"/home/peza/Documents/pony play/reactive-me/maintest.pony",
 		"/home/peza/Documents/pony play/reactive-me/processor.pony",
 		"/home/peza/Documents/pony play/reactive-me/subscriber.pony",
 		"/home/peza/Documents/pony play/reactive-me/defaultpublisher.pony",
@@ -234,16 +269,46 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 3,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "main.sublime-project",
-					"semi_transient": true,
+					"file": "reactive-streams/managedpublisher.pony",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 45,
+						"buffer_size": 1284,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								641,
+								641
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/sublime-pony/pony.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "reactive-streams/unicastpublisher.pony",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 183,
 						"regions":
 						{
 						},
@@ -256,7 +321,65 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+							"syntax": "Packages/sublime-pony/pony.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "main.pony",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 2404,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5,
+								5
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/sublime-pony/pony.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "reactive-streams/testmain.pony",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 312,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								288,
+								288
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/sublime-pony/pony.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -265,6 +388,11 @@
 					"stack_index": 0,
 					"type": "text"
 				}
+			]
+		},
+		{
+			"sheets":
+			[
 			]
 		}
 	],
@@ -285,11 +413,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.5,
 			1.0
 		],
 		"rows":
@@ -303,9 +438,17 @@
 	{
 		"height": 162.0
 	},
+	"output.exec":
+	{
+		"height": 326.0
+	},
 	"output.find_results":
 	{
 		"height": 100.0
+	},
+	"output.git":
+	{
+		"height": 94.0
 	},
 	"pinned_build_system": "Packages/sublime-pony/Pony.sublime-build",
 	"project": "main.sublime-project",
