@@ -1,16 +1,6 @@
 use "collections"
-use "logger"
-
-
-class NoSubscription is Subscription
-  """
-  NoSubscription is a noop class, used to make the code easier.
-  """
-  fun ref request(n: U64) =>
-    None
-
-  fun ref cancel() =>
-    None
+use "ponytest"
+use "reactive-streams"
 
 
 actor StringSubscriber is Subscriber[String]
@@ -53,63 +43,22 @@ actor StringSubscriber is Subscriber[String]
     _env.out.print("on_complete")
 
 
-actor Yield
-  let _main: Main
 
-  new create(main: Main) =>
-    _main = main
-
-  be yield() =>
-    _main.yield()
-
-
-actor Main
-  let _env: Env
-  let _publisher: DefaultPublisher[String]
-  var _n: U64 = 0
-
+actor Main is TestList
   new create(env: Env) =>
-    _env = env
-    let notify = UnicastNotifier[String]
-    _publisher = DefaultPublisher[String](consume notify)
+    PonyTest(env, this)
 
-    let sub = StringSubscriber(this, env)
-    _publisher.subscribe(sub)
+  new make() =>
+    None
 
-    _publish("Hallo")
-    let y = Yield(this)
-    y.yield()
+  fun tag tests(test: PonyTest) =>
+    test(_TestOne)
 
+class iso _TestOne is UnitTest
+  fun name(): String => "Test one"
 
-  be yield() =>
-    _publish("Hallo")
-    _publish("Hallo")
-    _publish("Hallo")
-    _publish("Hallo")
-    _publish("Hallo")
-    _publish("Hallo")
-    _publish("Hallo")
-    _publish("Hallo")
-    _publish("Hallo")
-    _publish("Hallo")
-    _publish("Hallo")
-    _publish("Hallo")
-    _publish("Hallo")
-    _publish("Hallo")
-    _publish("Hallo")
-    _publish("Hallo")
-    _publish("Hallo")
-    _publish("Hallo")
-    _publish("Hallo")
-    _publish("Hallo")
-    _publish("Hallo")
-    _publisher.complete()
-    _env.out.print("called complete")
-
-
-  fun ref _publish(s: String) =>
-    let n = (_n = _n + 1)
-    _publisher.publish(n.string() + ": " + s)
-    _env.out.print("called publish: " + n.string())
-
-
+  fun apply(h: TestHelper) =>
+    h.log("Look ma, I'm testing...", true)
+    h.assert_eq[U32](1, 1)
+    h.long_test(1000_000)
+    h.complete(true)
