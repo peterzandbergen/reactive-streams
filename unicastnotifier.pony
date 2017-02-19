@@ -1,5 +1,6 @@
 use "collections"
 
+// Add comment and push.
 class UnicastNotifier[A: Any #share] is PublisherNotify[A]
   var _sub: (Subscriber[A] | None) = None
   var _requests: U64 = 0
